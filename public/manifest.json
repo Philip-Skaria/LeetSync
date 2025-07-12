@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "LeetSync",
+  "version": "1.0.0",
+  "description": "Sync your LeetCode progress",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://leetcode.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://leetcode.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_title": "LeetSync"
+  }
+}
