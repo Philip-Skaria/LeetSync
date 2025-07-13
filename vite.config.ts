@@ -1,16 +1,16 @@
-import { defineConfig } from 'vite';
-import { resolve } from 'path';
+// vite.config.ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { resolve } from 'path'
 
 export default defineConfig({
+  plugins: [react()],
   build: {
     rollupOptions: {
       input: {
-        // Content script
         content: resolve(__dirname, 'src/content/index.ts'),
-        // Background script
         background: resolve(__dirname, 'src/background/index.ts'),
-        // Popup (if you have one)
-        // popup: resolve(__dirname, 'src/popup/index.html'),
+        popup: resolve(__dirname, 'src/popup/index.html')
       },
       output: {
         entryFileNames: '[name].js',
@@ -18,11 +18,12 @@ export default defineConfig({
         assetFileNames: '[name].[ext]'
       }
     },
-    outDir: 'dist'
+    outDir: 'dist',
+    emptyOutDir: true
   },
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src')
     }
-  },
-});
+  }
+})
